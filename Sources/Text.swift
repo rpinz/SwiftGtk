@@ -7,9 +7,9 @@
 //
 import CGLib
 import CGtk
+import GIO
 import GLib
 import GLibObject
-import GIO
 
 /// Text view convenience methods
 public extension TextViewProtocol {
@@ -37,7 +37,6 @@ class BoundsIter: TextIter {
         super.init(&iter)
     }
 }
-
 
 /// Text buffer convenience mentods
 public extension TextBufferProtocol {
@@ -76,4 +75,3 @@ public extension TextBuffer {
         self.init(buffer)
     }
 }
-

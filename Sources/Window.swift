@@ -10,7 +10,6 @@ import CGtk
 import GLib
 import GLibObject
 
-
 /// Window convenience methods
 public extension WindowProtocol {
     /// size of the window
@@ -20,7 +19,6 @@ public extension WindowProtocol {
         return (w, h)
     }
 }
-
 
 public extension ScrolledWindow {
     /// Convenience constructor

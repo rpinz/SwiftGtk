@@ -5,8 +5,8 @@
 //  Created by Rene Hexel on 22/4/17.
 //  Copyright © 2017 Rene Hexel.  All rights reserved.
 //
-import GLibObject
 import CGtk
+import GLibObject
 
 public extension ListStore {
     /// Return a tree model reference for the list store
@@ -70,7 +70,6 @@ public extension ListStore {
         set(iter: i, values: values, startColumn: s)
     }
 }
-
 
 public extension TreeView {
     /// Convenience List View constructor

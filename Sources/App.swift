@@ -6,10 +6,10 @@
 //  Copyright © 2017 Rene Hexel.  All rights reserved.
 //
 import CGLib
+import CGtk
+import GIO
 import GLib
 import GLibObject
-import GIO
-import CGtk
 
 /// Convenience constructor for an application reference
 ///
@@ -30,7 +30,7 @@ public extension ApplicationProtocol {
                 let holder = Unmanaged<ApplicationSignalHandlerClosureHolder>.fromOpaque(swift)
                 holder.release()
             }
-            let _ = $1
+            _ = $1
         }, connectFlags: flags)
         return rv
     }
@@ -63,7 +63,6 @@ public extension ApplicationProtocol {
         return connectSignal(name: signal.rawValue, flags: f, handler: handler)
     }
 }
-
 
 /// Application convenience methods
 public extension Application {
@@ -103,7 +102,6 @@ public extension Application {
         self.init(app)
     }
 
-
     /// Runs the application.
     ///    This function is intended to be run from main() and its return value is intended to be returned by main(). Although you are expected to pass the argc , argv parameters from main() to this function, it is possible to pass NULL if argv is not available or commandline handling is not required. Note that on Windows, argc and argv are ignored, and g_win32_get_command_line() is called internally (for proper support of Unicode commandline arguments).
     ///    GApplication will attempt to parse the commandline arguments. You can add commandline flags to the list of recognised options by way of g_application_add_main_option_entries(). After this, the “handle-local-options” signal is emitted, from which the application can inspect the values of its GOptionEntrys.
@@ -116,10 +114,10 @@ public extension Application {
     ///    Since 2.40, applications that are not explicitly flagged as services or launchers (ie: neither G_APPLICATION_IS_SERVICE or G_APPLICATION_IS_LAUNCHER are given as flags) will check (from the default handler for local_command_line) if "--gapplication-service" was given in the command line. If this flag is present then normal commandline processing is interrupted and the G_APPLICATION_IS_SERVICE flag is set. This provides a "compromise" solution whereby running an application directly from the commandline will invoke it in the normal way (which can be useful for debugging) while still allowing applications to be D-Bus activated in service mode. The D-Bus service file should invoke the executable with "--gapplication-service" as the sole commandline argument. This approach is suitable for use by most graphical applications but should not be used from applications like editors that need precise control over when processes invoked via the commandline will exit and what their exit status will be.
     func run(arguments: [String]? = nil, startupHandler: ApplicationSignalHandler? = nil, activationHandler: ApplicationSignalHandler? = nil) -> Int {
         if let s = startupHandler {
-            connect(signal:.startup, handler: s)
+            connect(signal: .startup, handler: s)
         }
         if let a = activationHandler {
-            connect(signal:.activate, handler: a)
+            connect(signal: .activate, handler: a)
         }
         return ptr.withMemoryRebound(to: GApplication.self, capacity: 1) {
             let rv: Int32
@@ -132,9 +130,6 @@ public extension Application {
             return Int(rv)
         }
     }
-
-
-
 
     /// Create and run an application with an optional ID and optional flags.
     ///    This function is intended to be run from main() and its return value is intended to be returned by main(). Although you are expected to pass the argc , argv parameters from main() to this function, it is possible to pass NULL if argv is not available or commandline handling is not required. Note that on Windows, argc and argv are ignored, and g_win32_get_command_line() is called internally (for proper support of Unicode commandline arguments).

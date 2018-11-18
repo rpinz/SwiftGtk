@@ -5,13 +5,13 @@
 //  Created by Carl Lusty on 14/7/17.
 //  Copyright © 2017 Carl Lusty.  All rights reserved.
 //
+import Cairo
 import CGLib
 import CGtk
+import Gdk
+import GIO
 import GLib
 import GLibObject
-import GIO
-import Cairo
-import Gdk
 
 /// A closure taking a reference to the current cell renderer text, the path identifying the edited cell and the new text as an argument
 public typealias EditedSignalHandler = (CellRendererTextRef, String, String) -> Void
@@ -31,7 +31,7 @@ public extension CellRendererTextProtocol {
                 let holder = Unmanaged<EditedSignalHandlerClosureHolder>.fromOpaque(swift)
                 holder.release()
             }
-            let _ = $1
+            _ = $1
         }, connectFlags: flags)
         return rv
     }

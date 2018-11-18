@@ -5,8 +5,8 @@
 //  Created by Rene Hexel on 25/4/17.
 //  Copyright © 2017, 2018s Rene Hexel.  All rights reserved.
 //
-import Foundation
 import CGtk
+import Foundation
 
 public extension GtkTargetEntry {
     /// Drag and drop target entry convenience constructor

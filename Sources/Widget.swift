@@ -5,14 +5,14 @@
 //  Created by Rene Hexel on 23/4/17.
 //  Copyright © 2017, 2018 Rene Hexel.  All rights reserved.
 //
-import CGLib
+import Cairo
 import CGdk
+import CGLib
 import CGtk
+import Gdk
+import GIO
 import GLib
 import GLibObject
-import GIO
-import Cairo
-import Gdk
 
 /// A closure taking a reference to the current widget and cairo_t as an argument
 public typealias WidgetSignalHandler = (WidgetRef, Cairo.ContextRef) -> Bool
@@ -36,7 +36,7 @@ public typealias DragDataGetSignalHandler = (WidgetRef, Gdk.DragContextRef, Unsa
 public typealias DragDataReceivedSignalHandler = (WidgetRef, Gdk.DragContextRef, gint, gint, UnsafeMutablePointer<GtkSelectionData>?, guint, guint32) -> Void
 
 /// Internal type for Drawing SignalHandler closure holder
-typealias WidgetSignalHandlerClosureHolder = DualClosureHolder<WidgetRef,Cairo.ContextRef, Bool>
+typealias WidgetSignalHandlerClosureHolder = DualClosureHolder<WidgetRef, Cairo.ContextRef, Bool>
 
 /// Internal type for key event SignalHandler closure holder
 typealias KeySignalHandlerClosureHolder = DualClosureHolder<WidgetRef, Gdk.EventKeyRef, Void>
@@ -72,7 +72,7 @@ public extension WidgetProtocol {
                 let holder = Unmanaged<WidgetSignalHandlerClosureHolder>.fromOpaque(swift)
                 holder.release()
             }
-            let _ = $1
+            _ = $1
         }, connectFlags: flags)
         return rv
     }
@@ -86,7 +86,7 @@ public extension WidgetProtocol {
                 let holder = Unmanaged<KeySignalHandlerClosureHolder>.fromOpaque(swift)
                 holder.release()
             }
-            let _ = $1
+            _ = $1
         }, connectFlags: flags)
         return rv
     }
@@ -100,7 +100,7 @@ public extension WidgetProtocol {
                 let holder = Unmanaged<ButtonSignalHandlerClosureHolder>.fromOpaque(swift)
                 holder.release()
             }
-            let _ = $1
+            _ = $1
         }, connectFlags: flags)
         return rv
     }
@@ -114,7 +114,7 @@ public extension WidgetProtocol {
                 let holder = Unmanaged<MotionSignalHandlerClosureHolder>.fromOpaque(swift)
                 holder.release()
             }
-            let _ = $1
+            _ = $1
         }, connectFlags: flags)
         return rv
     }
@@ -128,7 +128,7 @@ public extension WidgetProtocol {
                 let holder = Unmanaged<DragSignalHandlerClosureHolder>.fromOpaque(swift)
                 holder.release()
             }
-            let _ = $1
+            _ = $1
         }, connectFlags: flags)
         return rv
     }
@@ -142,7 +142,7 @@ public extension WidgetProtocol {
                 let holder = Unmanaged<DragDataGetSignalHandlerClosureHolder>.fromOpaque(swift)
                 holder.release()
             }
-            let _ = $1
+            _ = $1
         }, connectFlags: flags)
         return rv
     }
@@ -156,7 +156,7 @@ public extension WidgetProtocol {
                 let holder = Unmanaged<DragDataReceivedSignalHandlerClosureHolder>.fromOpaque(swift)
                 holder.release()
             }
-            let _ = $1
+            _ = $1
         }, connectFlags: flags)
         return rv
     }
@@ -396,7 +396,6 @@ public extension WidgetProtocol {
         return connectDragDataReceived(signal: WidgetSignalName.dragDataReceived.rawValue, flags: f, handler: handler)
     }
 }
-
 
 /// Widget convenience methods
 public extension Widget {

@@ -8,7 +8,7 @@
 if ! pushd .build/gir2swift >/dev/null 2>&1 ; then
 	mkdir -p .build
 	pushd .build >/dev/null
-	git clone https://github.com/rhx/gir2swift.git
+	git clone https://github.com/rpinz/gir2swift
 	cd gir2swift && ./build.sh
 fi
 export PATH=`pwd`/.build/debug:${PATH}
@@ -26,5 +26,5 @@ else
 	( cd `dirname $gen` && ./`basename $gen` "$@" )
   done
 fi
-echo "Generate Swift Wrapper for Swift${Mod}.git"
+echo "Generate Swift Wrapper for Swift${Mod}"
 . ./gir-to-swift.sh "$@"

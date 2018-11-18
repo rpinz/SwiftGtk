@@ -5,9 +5,9 @@
 //  Created by Rene Hexel on 29/4/17.
 //  Copyright © 2017 Rene Hexel.  All rights reserved.
 //
+import Cairo
 import CCairo
 import CGtk
-import Cairo
 import Gdk
 
 public extension DragContextProtocol {
@@ -21,7 +21,6 @@ public extension DragContextProtocol {
         }
     }
 }
-
 
 public extension WidgetProtocol {
     /// Set a drag source

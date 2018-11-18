@@ -5,13 +5,12 @@
 //  Created by Rene Hexel on 23/4/17.
 //  Copyright © 2017 Rene Hexel.  All rights reserved.
 //
+import Cairo
 import CGLib
 import CGtk
+import GIO
 import GLib
 import GLibObject
-import GIO
-import Cairo
-
 
 /// Box protocol convenience methods
 public extension BoxProtocol {
@@ -34,7 +33,7 @@ public extension BoxProtocol {
                 let holder = Unmanaged<BoxSignalHandlerClosureHolder>.fromOpaque(swift)
                 holder.release()
             }
-            let _ = $1
+            _ = $1
         }, connectFlags: flags)
         return rv
     }
@@ -121,4 +120,3 @@ public extension BoxProtocol {
         set(child: widget, property: p, value: v)
     }
 }
-

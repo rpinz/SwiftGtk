@@ -3,6 +3,6 @@
 /Packages
 /*.xcodeproj
 Package.pins
-Package.resolved
+/Package.resolved
 *-*.swift
 *-*.swift.out

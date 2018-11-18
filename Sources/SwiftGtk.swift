@@ -1,14 +1,14 @@
-import CGLib
-import CCairo
-import CPango
-import CGdkPixbuf
-import CGdk
+import Cairo
 import CAtk
+import CCairo
+import CGdk
+import CGdkPixbuf
+import CGLib
 import CGtk
+import CPango
+import GIO
 import GLib
 import GLibObject
-import GIO
-import Cairo
 
 #if os(macOS)
     /// This seems to be missing on macOS in gtk-3.22
@@ -20,9 +20,9 @@ import Cairo
 /// Internal Class that wraps a 2-parameter closure to make sure the closure
 /// is retained until no longer required
 public class DualClosureHolder<S, T, U> {
-    
+
     public let call: (S, T) -> U
-    
+
     public init(_ closure: @escaping (S, T) -> U) {
         self.call = closure
     }
@@ -83,18 +83,17 @@ public class Closure7Holder<S, T, U, V, W, X, Y, Z> {
     }
 }
 
-
 /// A closure taking a reference to the current application as an argument
 public typealias ApplicationSignalHandler = (ApplicationRef) -> Void
 
 /// Internal type for Application SignalHandler closure holder
-typealias ApplicationSignalHandlerClosureHolder = ClosureHolder<ApplicationRef,Void>
+typealias ApplicationSignalHandlerClosureHolder = ClosureHolder<ApplicationRef, Void>
 
 /// A closure taking a reference to the current box and cairo_t as an argument
 public typealias BoxSignalHandler = (BoxRef, Cairo.ContextRef) -> Bool
 
 /// Internal type for Drawing SignalHandler closure holder
-typealias BoxSignalHandlerClosureHolder = DualClosureHolder<BoxRef,Cairo.ContextRef, Bool>
+typealias BoxSignalHandlerClosureHolder = DualClosureHolder<BoxRef, Cairo.ContextRef, Bool>
 
 /**
  * Convert a swift string (or UnsafePointer<Char>) into
@@ -105,7 +104,6 @@ typealias BoxSignalHandlerClosureHolder = DualClosureHolder<BoxRef,Cairo.Context
 func cstring(_ arg: UnsafePointer<CChar>) -> UnsafeMutablePointer<CChar> {
     return UnsafeMutablePointer<CChar>(mutating: arg)
 }
-
 
 /**
  * Convert an array of strings into a null-terminated array of

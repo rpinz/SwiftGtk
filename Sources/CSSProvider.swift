@@ -5,10 +5,10 @@
 //  Created by Rene Hexel on 25/4/17.
 //  Copyright © 2017 Rene Hexel.  All rights reserved.
 //
-import Foundation
 import CGtk
+import Foundation
 
-fileprivate func with<T>(gString: UnsafePointer<CChar>, perform: (UnsafeMutablePointer<gchar>) throws -> T) throws -> T {
+private func with<T>(gString: UnsafePointer<CChar>, perform: (UnsafeMutablePointer<gchar>) throws -> T) throws -> T {
     return try perform(UnsafeMutablePointer(mutating: gString))
 }
 
@@ -33,7 +33,7 @@ public extension CssProviderProtocol {
     @discardableResult
     public func load(from data: String) throws -> Bool {
         return try with(gString: data) {
-            return try loadFrom(data: $0, length: -1)
+            try loadFrom(data: $0, length: -1)
         }
     }
 }

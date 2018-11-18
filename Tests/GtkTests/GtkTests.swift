@@ -1,13 +1,13 @@
-import XCTest
 import CGtk
 @testable import Gtk
+import XCTest
 
 class GtkTests: XCTestCase {
     func testMajorVersion() { XCTAssertEqual(getMajorVersion(), gtk_get_major_version()) }
     func testMinorVersion() { XCTAssertEqual(getMinorVersion(), gtk_get_minor_version()) }
     func testMicroVersion() { XCTAssertEqual(getMicroVersion(), gtk_get_micro_version()) }
     func testInterfaceAge() { XCTAssertEqual(getInterfaceAge(), gtk_get_interface_age()) }
-    func testBinaryAge()    { XCTAssertEqual(getBinaryAge(),    gtk_get_binary_age())    }
+    func testBinaryAge() { XCTAssertEqual(getBinaryAge(), gtk_get_binary_age()) }
 
     /// test that we can run and quit an app
     func testApp() {
@@ -37,15 +37,15 @@ class GtkTests: XCTestCase {
 }
 
 extension GtkTests {
-    static var allTests : [(String, (GtkTests) -> () throws -> Void)] {
+    static var allTests: [(String, (GtkTests) -> () throws -> Void)] {
         return [
-            ("testApp",             testApp),
-            ("testTextBuffer",      testTextBuffer),
-            ("testMajorVersion",    testMajorVersion),
-            ("testMinorVersion",    testMinorVersion),
-            ("testMicroVersion",    testMicroVersion),
-            ("testInterfaceAge",    testInterfaceAge),
-            ("testBinaryAge",       testBinaryAge),
+            ("testApp", testApp),
+            ("testTextBuffer", testTextBuffer),
+            ("testMajorVersion", testMajorVersion),
+            ("testMinorVersion", testMinorVersion),
+            ("testMicroVersion", testMicroVersion),
+            ("testInterfaceAge", testInterfaceAge),
+            ("testBinaryAge", testBinaryAge)
         ]
     }
 }

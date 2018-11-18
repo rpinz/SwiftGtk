@@ -1,0 +1,3 @@
+[submodule "Library/CGtk"]
+	path = Library/CGtk
+	url = https://github.com/rpinz/CGtk

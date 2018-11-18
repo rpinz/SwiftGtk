@@ -5,12 +5,12 @@
 //  Created by Rene Hexel on 29/4/17.
 //  Copyright © 2017 Rene Hexel.  All rights reserved.
 //
+import Cairo
 import CGLib
 import CGtk
+import GIO
 import GLib
 import GLibObject
-import GIO
-import Cairo
 
 public extension ContainerProtocol {
     /// Set a child widget property

@@ -5,8 +5,8 @@
 //  Created by Rene Hexel on 22/4/17.
 //  Copyright © 2017 Rene Hexel.  All rights reserved.
 //
-import GLibObject
 import CGtk
+import GLibObject
 
 public extension TreeStore {
     /// Return a tree model reference for the list store
@@ -120,7 +120,6 @@ public extension TreeView {
     }
 }
 
-
 public extension TreeViewColumn {
     /// Convenience constructor for setting up a tree or list view column
     ///
@@ -154,5 +153,3 @@ public extension TreeViewColumn {
         self.init(column, title: t, renderer: r, attribute: a, expand: e, rendererAttributes: ras)
     }
 }
-
-
