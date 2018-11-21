@@ -13,7 +13,7 @@ import GLibObject
 
 /// Text view convenience methods
 public extension TextViewProtocol {
-    public var text: String {
+    var text: String {
         get {
             let text = TextBufferRef(buffer).text
             return text
@@ -42,7 +42,7 @@ class BoundsIter: TextIter {
 public extension TextBufferProtocol {
     /// A string containing the text stored inside the text buffer,
     /// including hidden characters
-    public var text: String {
+    var text: String {
         get {
             let text = ptr.withMemoryRebound(to: GtkTextBuffer.self, capacity: 1) { (buf: UnsafeMutablePointer<GtkTextBuffer>) -> String in
                 var beg = GtkTextIter()
@@ -58,7 +58,7 @@ public extension TextBufferProtocol {
     }
 
     /// bounds for the start and end of the text buffer
-    public var bounds: (start: TextIter, end: TextIter) {
+    var bounds: (start: TextIter, end: TextIter) {
         let beg = BoundsIter()
         let end = BoundsIter()
         gtk_text_buffer_get_bounds(ptr.withMemoryRebound(to: GtkTextBuffer.self, capacity: 1) { $0 }, beg.ptr, end.ptr)
@@ -70,7 +70,7 @@ public extension TextBuffer {
     /// Default contstructor
     ///
     /// - returns: a new text buffer with a new tag table
-    public convenience init?() {
+    convenience init?() {
         guard let buffer = gtk_text_buffer_new(nil) else { return nil }
         self.init(buffer)
     }

@@ -18,11 +18,11 @@ public extension BoxProtocol {
     ///
     /// - Parameter marginStart: start margin
 
-    public func set(marginStart: Int) { setMarginStart(margin: CInt(marginStart)) }
+    func set(marginStart: Int) { setMarginStart(margin: CInt(marginStart)) }
     /// Set the end margin of the box
     ///
     /// - Parameter marginEnd: end margin
-    public func set(marginEnd: Int) { setMarginStart(margin: CInt(marginEnd)) }
+    func set(marginEnd: Int) { setMarginStart(margin: CInt(marginEnd)) }
 
     /// Connection helper function
     private func _connect(signal name: UnsafePointer<gchar>, flags: ConnectFlags, data: BoxSignalHandlerClosureHolder, handler: @convention(c) @escaping (gpointer, gpointer, gpointer) -> gboolean) -> CUnsignedLong {
@@ -42,7 +42,7 @@ public extension BoxProtocol {
     /// the receiver object.  Similar to g_signal_connect(), but allows
     /// to provide a Swift closure that can capture its surrounding context.
     @discardableResult
-    public func connectSignal(name: UnsafePointer<gchar>, flags f: ConnectFlags = ConnectFlags(0), handler: @escaping BoxSignalHandler) -> CUnsignedLong {
+    func connectSignal(name: UnsafePointer<gchar>, flags f: ConnectFlags = ConnectFlags(0), handler: @escaping BoxSignalHandler) -> CUnsignedLong {
         let rv = _connect(signal: name, flags: f, data: DualClosureHolder(handler)) {
             let holder = Unmanaged<BoxSignalHandlerClosureHolder>.fromOpaque($2).takeUnretainedValue()
             let rv: gboolean = holder.call(BoxRef(raw: $0), Cairo.ContextRef(raw: $1)) ? 1 : 0
@@ -55,7 +55,7 @@ public extension BoxProtocol {
     /// the receiver object.  Similar to g_signal_connect(), but allows
     /// to provide a Swift closure that can capture its surrounding context.
     @discardableResult
-    public func connect<T>(signal s: T, flags f: ConnectFlags = ConnectFlags(0), handler: @escaping BoxSignalHandler) -> CUnsignedLong where T: SignalNameProtocol {
+    func connect<T>(signal s: T, flags f: ConnectFlags = ConnectFlags(0), handler: @escaping BoxSignalHandler) -> CUnsignedLong where T: SignalNameProtocol {
         return connectSignal(name: s.rawValue, flags: f, handler: handler)
     }
 
@@ -63,7 +63,7 @@ public extension BoxProtocol {
     /// the receiver object.  Similar to g_signal_connect(), but allows
     /// to provide a Swift closure that can capture its surrounding context.
     @discardableResult
-    public func connect(signal: BoxSignalName, flags f: ConnectFlags = ConnectFlags(0), handler: @escaping BoxSignalHandler) -> CUnsignedLong {
+    func connect(signal: BoxSignalName, flags f: ConnectFlags = ConnectFlags(0), handler: @escaping BoxSignalHandler) -> CUnsignedLong {
         return connectSignal(name: signal.rawValue, flags: f, handler: handler)
     }
 
@@ -71,7 +71,7 @@ public extension BoxProtocol {
     /// signal of the receiver object.  Similar to g_signal_connect(), but allows
     /// to provide a Swift closure that can capture its surrounding context.
     @discardableResult
-    public func onDraw(flags f: ConnectFlags = ConnectFlags(0), handler: @escaping BoxSignalHandler) -> CUnsignedLong {
+    func onDraw(flags f: ConnectFlags = ConnectFlags(0), handler: @escaping BoxSignalHandler) -> CUnsignedLong {
         return connectSignal(name: BoxSignalName.draw.rawValue, flags: f, handler: handler)
     }
 
@@ -81,7 +81,7 @@ public extension BoxProtocol {
     ///   - child: widget to set property for
     ///   - property: name of the property
     ///   - value: value to set
-    public func set<W: WidgetProtocol>(child widget: W, properties: [(BoxPropertyName, Any)]) {
+    func set<W: WidgetProtocol>(child widget: W, properties: [(BoxPropertyName, Any)]) {
         widget.freezeChildNotify() ; defer { widget.thawChildNotify() }
         for (p, v) in properties {
             set(child: widget, property: p, value: v)
@@ -93,7 +93,7 @@ public extension BoxProtocol {
     /// - Parameters:
     ///   - widget: child widget to set properties for
     ///   - properties: `PropertyName` / value pairs to set
-    public func set<W: WidgetProtocol>(child widget: W, properties ps: (BoxPropertyName, Any)...) {
+    func set<W: WidgetProtocol>(child widget: W, properties ps: (BoxPropertyName, Any)...) {
         set(child: widget, properties: ps)
     }
 
@@ -102,7 +102,7 @@ public extension BoxProtocol {
     /// - Parameters:
     ///   - widget: child widget to add
     ///   - properties: `PropertyName` / value pairs of properties to set
-    public func add<W: WidgetProtocol>(_ widget: W, properties ps: (BoxPropertyName, Any)...) {
+    func add<W: WidgetProtocol>(_ widget: W, properties ps: (BoxPropertyName, Any)...) {
         widget.freezeChildNotify() ; defer { widget.thawChildNotify() }
         emit(ContainerSignalName.add, widget.ptr)
         set(child: widget, properties: ps)
@@ -114,7 +114,7 @@ public extension BoxProtocol {
     ///   - widget: child widget to add
     ///   - property: name of the property to set
     ///   - value: value of the property to set
-    public func add<W: WidgetProtocol, V>(_ widget: W, property p: BoxPropertyName, value v: V) {
+    func add<W: WidgetProtocol, V>(_ widget: W, property p: BoxPropertyName, value v: V) {
         widget.freezeChildNotify() ; defer { widget.thawChildNotify() }
         emit(ContainerSignalName.add, widget.ptr)
         set(child: widget, property: p, value: v)
