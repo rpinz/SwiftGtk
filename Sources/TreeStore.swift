@@ -78,12 +78,12 @@ open class TreeIter: TreeIterBase {
     var iter = GtkTreeIter(stamp: 0, user_data: nil, user_data2: nil, user_data3: nil)
 
     /// Empty tree/list iterator constructor
-    init() { super.init(&iter) }
+    public init() { super.init(&iter) }
 
     /// Iterator copy constructor
     ///
     /// - Parameter other: iterator to copy
-    convenience init(copy other: TreeIter) {
+    public convenience init(copy other: TreeIter) {
         self.init()
         iter = other.iter
     }
@@ -91,7 +91,7 @@ open class TreeIter: TreeIterBase {
     /// Iterator copy constructor
     ///
     /// - Parameter other: iterator to copy
-    convenience init<T: TreeIterProtocol>(copy other: T) {
+    public convenience init<T: TreeIterProtocol>(copy other: T) {
         self.init()
         iter = other.ptr.pointee
     }
