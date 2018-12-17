@@ -2,37 +2,63 @@
 
 import PackageDescription
 
-let package = Package(
+internal let package = Package(
     name: "Gtk",
     products: [
         .library(
             name: "Gtk",
-            targets: ["Gtk"])
+            targets: [
+                "Gtk"
+            ]
+        )
     ],
     dependencies: [
         .package(
             url: "https://github.com/rpinz/SwiftGdk",
-            .branch("master")),
+            .branch(
+                "master"
+            )
+        ),
         .package(
             url: "https://github.com/rpinz/SwiftAtk",
-            .branch("master"))
+            .branch(
+                "master"
+            )
+        )
     ],
     targets: [
         .target(
             name: "Gtk",
-            dependencies: ["CGtk","Gdk", "Atk"],
-            path: "Sources"),
+            dependencies: [
+                "CGtk",
+                "Gdk",
+                "Atk"
+            ],
+            path: "Sources"
+        ),
         .testTarget(
             name: "GtkTests",
-            dependencies: ["Gtk"]),
+            dependencies: [
+                "Gtk"
+            ]
+        ),
         .systemLibrary(
             name: "CGtk",
             path: "Library/CGtk",
             pkgConfig: "gtk+-3.0",
             providers: [
-                .brew(["libgtk-3"]),
-                .apt(["libgtk-3-dev"])
-            ])
+                .brew(
+                    [
+                        "libgtk-3"
+                    ]
+                ),
+                .apt(
+                    [
+                        "libgtk-3-dev"
+                    ]
+                )
+            ]
+        )
     ],
     swiftLanguageVersions: [
         .v4_2,

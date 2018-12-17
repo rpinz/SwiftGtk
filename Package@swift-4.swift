@@ -2,32 +2,53 @@
 
 import PackageDescription
 
-let package = Package(
+internal let package = Package(
     name: "Gtk",
     products: [
         .library(
             name: "Gtk",
-            targets: ["Gtk"])
+            targets: [
+                "Gtk"
+            ]
+        )
     ],
     dependencies: [
         .package(
             url: "https://github.com/rpinz/CGtk",
-            .branch("master")),
+            .branch(
+                "master"
+            )
+        ),
         .package(
             url: "https://github.com/rpinz/SwiftGdk",
-            .branch("master")),
+            .branch(
+                "master"
+            )
+        ),
         .package(
             url: "https://github.com/rpinz/SwiftAtk",
-            .branch("master"))
+            .branch(
+                "master"
+            )
+        )
     ],
     targets: [
         .target(
             name: "Gtk",
-            dependencies: ["Gdk", "Atk"],
-            path: "Sources"),
+            dependencies: [
+                "Gdk",
+                "Atk"
+            ],
+            path: "Sources"
+        ),
         .testTarget(
             name: "GtkTests",
-            dependencies: ["Gtk"])
+            dependencies: [
+                "Gtk"
+            ]
+        )
     ],
-    swiftLanguageVersions: [4]
+    swiftLanguageVersions: [
+        4
+    ]
 )
